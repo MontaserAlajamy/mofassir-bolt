@@ -59,7 +59,6 @@ export function Footer() {
             <ul className="space-y-3 text-gray-400">
               <li>info@mofassir.com</li>
               <li>Dubai, United Arab Emirates</li>
-              <li>Riyadh, Saudi Arabia</li>
             </ul>
           </div>
         </div>
