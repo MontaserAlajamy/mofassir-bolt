@@ -58,6 +58,7 @@ export function Footer() {
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-3 text-gray-400">
               <li>info@mofassir.com</li>
+              <li> Level 01, Innovation One, Dubai International Financial Centre</li>
               <li>Dubai, United Arab Emirates</li>
             </ul>
           </div>
