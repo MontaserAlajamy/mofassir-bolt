@@ -27,7 +27,7 @@ export function Contact() {
                 </div>
                 <div className="ml-4">
                   <h3 className="text-lg font-medium text-gray-900">Email</h3>
-                  <p className="mt-1 text-gray-600">support@mofassir.com</p>
+                  <p className="mt-1 text-gray-600">info@mofassir.com</p>
                 </div>
               </div>
 
@@ -37,7 +37,7 @@ export function Contact() {
                 </div>
                 <div className="ml-4">
                   <h3 className="text-lg font-medium text-gray-900">Phone</h3>
-                  <p className="mt-1 text-gray-600">+1 (555) 123-4567</p>
+                  <p className="mt-1 text-gray-600">+971 (000) 123-4567</p>
                 </div>
               </div>
 
@@ -48,9 +48,9 @@ export function Contact() {
                 <div className="ml-4">
                   <h3 className="text-lg font-medium text-gray-900">Office</h3>
                   <p className="mt-1 text-gray-600">
-                    123 AI Street<br />
-                    Tech Valley, CA 94025<br />
-                    United States
+                    Level 01, Innovation One<br />
+                    Dubai International Financial Centre<br />
+                    Dubai, United Arab Emirates
                   </p>
                 </div>
               </div>
@@ -61,16 +61,13 @@ export function Contact() {
               <dl className="space-y-4">
                 <div className="flex justify-between">
                   <dt className="text-gray-600">Monday - Friday</dt>
-                  <dd className="text-gray-900">9:00 AM - 6:00 PM (PST)</dd>
+                  <dd className="text-gray-900">9:00 AM - 5:00 PM (PST)</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-gray-600">Saturday</dt>
-                  <dd className="text-gray-900">10:00 AM - 4:00 PM (PST)</dd>
+                  <dt className="text-gray-600">Saturday - Sunday</dt>
+                  <dd className="text-gray-900">Urgent Calls Only)</dd>
                 </div>
-                <div className="flex justify-between">
-                  <dt className="text-gray-600">Sunday</dt>
-                  <dd className="text-gray-900">Closed</dd>
-                </div>
+
               </dl>
             </div>
           </div>
