@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
 import { Settings, Users, MessageSquare, BarChart, Upload } from 'lucide-react';
+import { useAuth } from '../../hooks/useAuth';
 
 interface DashboardStats {
   totalUsers: number;
@@ -9,6 +11,7 @@ interface DashboardStats {
 }
 
 export function AdminDashboard() {
+  const { isAdmin, isLoading } = useAuth();
   const [stats, setStats] = useState<DashboardStats>({
     totalUsers: 0,
     totalContacts: 0,
@@ -55,8 +58,10 @@ export function AdminDashboard() {
       }
     };
 
-    fetchStats();
-  }, []);
+    if (isAdmin) {
+      fetchStats();
+    }
+  }, [isAdmin]);
 
   const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
@@ -119,12 +124,16 @@ export function AdminDashboard() {
     },
   ];
 
-  if (loading) {
+  if (isLoading || loading) {
     return (
       <div className="min-h-screen bg-gray-50 pt-16 flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
       </div>
     );
+  }
+
+  if (!isAdmin) {
+    return <Navigate to="/login" replace />;
   }
 
   return (

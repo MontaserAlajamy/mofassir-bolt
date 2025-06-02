@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Brain, Menu, X } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [logoUrl, setLogoUrl] = useState<string | null>(null);
   const location = useLocation();
   
   const isHomePage = location.pathname === '/';
@@ -16,6 +18,43 @@ export function Header() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const fetchLogo = async () => {
+      const { data: settings } = await supabase
+        .from('settings')
+        .select('value')
+        .eq('key', 'logo')
+        .single();
+      
+      if (settings?.value?.url) {
+        setLogoUrl(settings.value.url);
+      }
+    };
+
+    fetchLogo();
+
+    // Subscribe to realtime changes
+    const channel = supabase
+      .channel('settings_changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'settings',
+          filter: 'key=eq.logo'
+        },
+        () => {
+          fetchLogo();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   const navBackground = isScrolled || !isHomePage ? 'bg-white shadow-sm' : 'bg-transparent';
@@ -37,7 +76,11 @@ export function Header() {
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2 group">
             <div className={`p-2 rounded-lg transition-colors ${logoBackground}`}>
-              <Brain className={`w-6 h-6 transition-colors ${logoColor}`} />
+              {logoUrl ? (
+                <img src={logoUrl} alt="Logo" className="w-6 h-6 object-contain" />
+              ) : (
+                <Brain className={`w-6 h-6 transition-colors ${logoColor}`} />
+              )}
             </div>
             <span className={`text-xl font-bold transition-colors ${brandColor}`}>
               Mofassir
