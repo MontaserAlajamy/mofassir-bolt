@@ -1,6 +1,7 @@
 @@ .. @@
  export const chatbotConfig = {
    // n8n Webhook Configuration
+ }
 -  n8nWebhookUrl: 'https://your-n8n-instance.com/webhook/chatbot',
 +  n8nWebhookUrl: 'https://n8n.ajamy.tech/webhook-test/b0cfcbc6-2695-49b0-9f93-858fd6eeca81',
    
